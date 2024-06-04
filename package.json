@@ -19,6 +19,7 @@
   "packageManager": "pnpm@9.1.4",
   "dependencies": {
     "lil-gui": "^0.19.2",
+    "mitt": "^3.0.1",
     "three": "^0.165.0"
   }
 }
