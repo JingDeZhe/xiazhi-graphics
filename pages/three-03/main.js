@@ -17,6 +17,7 @@ function init(cw, ch) {
   /**@type {THREE.Mesh} */
   let imageMesh
   let imgUrl
+  let imgSize
 
   const scene = new THREE.Scene()
   const camera = new THREE.OrthographicCamera(-cw / 2, cw / 2, ch / 2, -ch / 2, 1, 1000)
@@ -58,6 +59,8 @@ function init(cw, ch) {
         imageMesh = new THREE.Mesh(geometry, material)
         scene.add(imageMesh)
       }
+
+      // process()
     })
   }
 
@@ -75,7 +78,14 @@ function init(cw, ch) {
       size.w = rh * (iw / ih)
       size.ol = (rw - size.w) / 2
     }
+    imgSize = size
     return size
+  }
+
+  function process() {
+    const gl = renderer.getContext()
+    const pixels = new Uint8Array(imgSize.w * imgSize.h * 4)
+    gl.readPixels(imgSize.ol, imgSize.ot, imgSize.w, imgSize.h, gl.RGBA, gl.UNSIGNED_BYTE, pixels)
   }
 
   function animate() {
