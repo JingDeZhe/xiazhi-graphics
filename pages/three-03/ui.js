@@ -15,13 +15,15 @@ fileInput.addEventListener('change', (e) => {
     emitter.emit('change-image', url)
   })
 })
-const config = {
-  'Change Image': () => {
+export const config = {
+  uploadImage: () => {
     fileInput.click()
   },
+  effect: false,
 }
 
-gui.add(config, 'Change Image')
+gui.add(config, 'uploadImage').name('Change image')
+gui.add(config, 'effect').name('Enable effect')
 
 function readFileAsUrl(file, cb) {
   if (!file || !cb) return
